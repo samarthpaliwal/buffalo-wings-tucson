@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reviews · Buffalo Wings Tucson</title>
+<meta name="description" content="What Tucson says about Buffalo Wings on N Grande Ave: 4.5 stars from 416 Google reviews, guest photos, and the full text of recent reviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* orbit collage */
+.collage{padding:130px 0 60px;overflow:hidden;position:relative}
+.collage .glow{position:absolute;left:50%;top:55%;width:60vw;height:60vw;max-width:700px;max-height:700px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(232,112,42,.18),transparent 62%);pointer-events:none}
+.collage .wrap{position:relative;display:grid;place-items:center;text-align:center}
+.collage .eyebrow{margin-bottom:.6rem}
+.orbit{--s:min(760px,92vw);--r1:calc(var(--s)*.43);--r2:calc(var(--s)*.25);--p1:calc(var(--s)*.16);--p2:calc(var(--s)*.11);position:relative;width:var(--s);height:var(--s);margin-top:1rem}
+.ring{position:absolute;inset:0;animation:spin 110s linear infinite}
+.ring.inner{animation:spin 80s linear infinite reverse}
+.ph{position:absolute;left:50%;top:50%;width:var(--p1);height:var(--p1);margin:calc(var(--p1)/-2) 0 0 calc(var(--p1)/-2);transform:rotate(var(--a)) translate(var(--r1)) rotate(calc(var(--a)*-1))}
+.inner .ph{width:var(--p2);height:var(--p2);margin:calc(var(--p2)/-2) 0 0 calc(var(--p2)/-2);transform:rotate(var(--a)) translate(var(--r2)) rotate(calc(var(--a)*-1))}
+.ph span{display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid var(--bg);box-shadow:0 0 0 1px var(--line),0 12px 30px rgba(0,0,0,.45);animation:spin 110s linear infinite reverse;transition:transform .4s var(--ease)}
+.inner .ph span{animation:spin 80s linear infinite}
+.ph:hover span{transform:scale(1.12)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(var(--s)*.3);aspect-ratio:1;border-radius:50%;background:var(--bg-2);border:1px solid var(--line);display:grid;place-content:center;gap:.1rem;box-shadow:0 0 0 12px rgba(232,112,42,.06),0 0 80px rgba(232,112,42,.2)}
+.core b{font-family:var(--display);font-size:calc(var(--s)*.11);line-height:.9;font-weight:700}
+.core .stars{font-size:calc(var(--s)*.025)}
+.core small{font-family:var(--mono);font-size:calc(var(--s)*.014);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.ring,.ph span{animation:none}}
+
+/* summary strip */
+.sumstrip{border-block:1px solid var(--line);background:var(--bg-2);padding:50px 0}
+.sumstrip .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:center}
+.bars{display:grid;gap:.5rem}
+.bars div{display:grid;grid-template-columns:14px 1fr 44px;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.bars i{height:8px;border-radius:4px;background:var(--bg-3);overflow:hidden;display:block}
+.bars i b{display:block;height:100%;width:0;background:var(--accent);transition:width 1.2s var(--ease)}
+.sumstrip blockquote{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.3rem);font-weight:500;line-height:1.05;text-transform:uppercase;letter-spacing:.01em}
+.sumstrip blockquote em{font-style:normal;color:var(--accent)}
+.sumstrip cite{display:block;font-style:normal;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:1rem}
+.sumstrip .chips{margin-top:1.4rem}
+@media (max-width:860px){.sumstrip .wrap{grid-template-columns:1fr}}
+
+/* review list */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.filters button{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem .95rem;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:all .25s var(--ease)}
+.filters button.active,.filters button:hover{color:var(--fg);border-color:var(--accent);background:rgba(232,112,42,.1)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.card.hide{display:none}
+.card header{display:flex;align-items:center;gap:.9rem;margin-bottom:.9rem}
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:1.25rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#120804;flex:none}
+.card header b{display:block;font-weight:600;font-size:.98rem}
+.card header small{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--muted)}
+.card .stars{margin-left:auto;text-align:right;font-size:.9rem}
+.card .stars small{display:block;color:var(--muted);font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem}
+.card p{color:var(--fg);font-size:.98rem}
+.card .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}
+.card .tags span{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .6rem;border-radius:6px;background:var(--bg-3);color:var(--muted)}
+.card .pics{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:1rem}
+.card .pics img{aspect-ratio:1;object-fit:cover;border-radius:10px;border:1px solid var(--line);width:100%}
+.card.quote p{font-family:var(--display);font-size:1.7rem;line-height:1.05;text-transform:uppercase;font-weight:500}
+.card.quote p::before{content:"“";color:var(--accent)}
+.card.quote p::after{content:"”";color:var(--accent)}
+.card.wide{grid-column:1/-1}
+@media (max-width:860px){.cards{grid-template-columns:1fr}}
+.write{text-align:center;margin-top:3rem}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Buffalo <span>Wings</span></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="location.html">Location</a></li>
+    </ul>
+    <a class="btn cta" href="tel:+15208822047">Call to order</a>
+    <button class="menu-btn" aria-label="Open navigation" aria-expanded="false"><i></i></button>
+  </div>
+</nav>
+
+<header class="collage">
+  <div class="glow"></div>
+  <div class="wrap">
+    <span class="eyebrow">Reviews · 416 on Google Maps</span>
+    <h1>What <em>Tucson</em> says</h1>
+    <div class="orbit zoomable" aria-label="Collage of guest photos circling the rating">
+      <div class="ring">
+        <div class="ph" style="--a:0deg"><span><img src="img/photo02.jpg" alt="Lemon pepper and BBQ wings with buffalo fries"></span></div>
+        <div class="ph" style="--a:36deg"><span><img src="img/photo08.jpg" alt="Buffalo wings and fried shrimp"></span></div>
+        <div class="ph" style="--a:72deg"><span><img src="img/photo05.jpg" alt="Mango and mocha frappes"></span></div>
+        <div class="ph" style="--a:108deg"><span><img src="img/photo06.jpg" alt="Plain wings with sauce cups"></span></div>
+        <div class="ph" style="--a:144deg"><span><img src="img/photo04.jpg" alt="Lemon pepper wings to go"></span></div>
+        <div class="ph" style="--a:180deg"><span><img src="img/photo01.jpg" alt="Buffalo Wings storefront"></span></div>
+        <div class="ph" style="--a:216deg"><span><img src="img/photo09.jpg" alt="Fried shrimp with cocktail sauce"></span></div>
+        <div class="ph" style="--a:252deg"><span><img src="img/reviews/enrique1.jpg" alt="Mango habanero and lemon pepper wings"></span></div>
+        <div class="ph" style="--a:288deg"><span><img src="img/photo10.jpg" alt="Cookies and cream frappe"></span></div>
+        <div class="ph" style="--a:324deg"><span><img src="img/reviews/steph3.jpg" alt="Wings from a large order"></span></div>
+      </div>
+      <div class="ring inner">
+        <div class="ph" style="--a:30deg"><span><img src="img/photo07.jpg" alt="Wings and crinkle fries"></span></div>
+        <div class="ph" style="--a:90deg"><span><img src="img/reviews/jr1.jpg" alt="Dine-in lunch"></span></div>
+        <div class="ph" style="--a:150deg"><span><img src="img/reviews/enrique2.jpg" alt="Wings and fried shrimp"></span></div>
+        <div class="ph" style="--a:210deg"><span><img src="img/reviews/selina1.jpg" alt="Sunday football order"></span></div>
+        <div class="ph" style="--a:270deg"><span><img src="img/reviews/steph1.jpg" alt="Catering order"></span></div>
+        <div class="ph" style="--a:330deg"><span><img src="img/photo03.jpg" alt="The menu board"></span></div>
+      </div>
+      <div class="core"><b>4.5</b><span class="stars">★★★★★</span><small>416 reviews</small></div>
+    </div>
+  </div>
+</header>
+
+<div class="sumstrip">
+  <div class="wrap">
+    <div data-reveal>
+      <div class="bars" id="bars">
+        <div><span>5</span><i><b data-w="76"></b></i><span>315</span></div>
+        <div><span>4</span><i><b data-w="13"></b></i><span>56</span></div>
+        <div><span>3</span><i><b data-w="4"></b></i><span>16</span></div>
+        <div><span>2</span><i><b data-w="2"></b></i><span>10</span></div>
+        <div><span>1</span><i><b data-w="5"></b></i><span>19</span></div>
+      </div>
+      <div class="chips">
+        <span><b>drive thru</b> 19</span><span><b>crispy wings</b> 14</span><span><b>boba</b> 10</span><span><b>chicken fingers</b> 6</span><span><b>jalapeno poppers</b> 3</span><span><b>mango habanero</b> 3</span><span><b>buffalo fries</b> 3</span><span><b>saucy wings</b> 3</span><span><b>fried zucchini</b> 3</span><span><b>gf wing sauce</b> 2</span>
+      </div>
+    </div>
+    <div data-reveal>
+      <blockquote>People say this restaurant offers <em>crispy, flavorful wings</em> with delicious house-made sauces and a great daily special. They also highlight the fresh, hot food and the <em>friendly staff</em>.</blockquote>
+      <cite>Google review summary</cite>
+    </div>
+  </div>
+</div>
+
+<section id="all">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow" data-reveal>Every word</span><h2 data-reveal>Recent<br>reviews</h2></div>
+      <a class="more" href="https://www.google.com/maps/place/Buffalo+Wings/@32.228798,-110.9898058,17z/data=!4m8!3m7!1s0x86d671b4886967cf:0x6e54e93cd997c906!8m2!3d32.228798!4d-110.9898058!9m1!1b1!16s%2Fg%2F11h4tck0rc" target="_blank" rel="noopener" data-reveal>Read all 416 on Google</a>
+    </div>
+
+    <div class="filters" data-reveal>
+      <button class="active" data-f="all">All</button>
+      <button data-f="wings">Wings</button>
+      <button data-f="lemon">Lemon pepper</button>
+      <button data-f="hot">Mango habanero</button>
+      <button data-f="shrimp">Shrimp</button>
+      <button data-f="sides">Sides</button>
+      <button data-f="service">Service</button>
+      <button data-f="photos">With photos</button>
+    </div>
+
+    <div class="cards zoomable">
+      <article class="card" data-tags="wings service photos" data-reveal>
+        <header><span class="avatar">T</span><div><b>Trey Pappas</b><small>5 reviews · 1 photo</small></div><div class="stars">★★★★★<small>6 months ago</small></div></header>
+        <p>Been tryna find a solid wing spot and I can now say this the place I'm going to from now on for wings 🔥 Very crispy and the sauce is bomb flavors go crazy, highly recommend</p>
+        <div class="tags"><span>Take out</span><span>Food 5</span><span>Service 5</span><span>Atmosphere 5</span><span>No wait</span><span>Very quiet</span></div>
+        <div class="pics"><img src="img/reviews/trey1.jpg" alt="Lemon pepper wings in a take-out box" loading="lazy"></div>
+      </article>
+
+      <article class="card" data-tags="service photos" data-reveal>
+        <header><span class="avatar">J</span><div><b>J R</b><small>Local Guide · 182 reviews · 379 photos</small></div><div class="stars">★★★★☆<small>11 months ago</small></div></header>
+        <p>The food was excellent. We dined in and the restaurant is very clean. However I was swatting a ton flies. Other than that it was great.</p>
+        <div class="tags"><span>Dine in</span><span>Lunch</span><span>Food 5</span><span>Service 5</span><span>Atmosphere 4</span></div>
+        <div class="pics"><img src="img/reviews/jr1.jpg" alt="Wings and sides from a dine-in lunch" loading="lazy"></div>
+      </article>
+
+      <article class="card" data-tags="wings shrimp sides photos" data-reveal>
+        <header><span class="avatar">S</span><div><b>selina islas</b><small>Local Guide · 23 reviews · 18 photos</small></div><div class="stars">★★★★★<small>2 years ago</small></div></header>
+        <p>Stopped to grab some wings for sunday football and they did not disappoint! The wings were pretty big and so good! We also got family size fries, mozzerella sticks and the 7 piece shrimp. Everything was so good! We will definitely be coming back.</p>
+        <div class="tags"><span>Take out</span><span>Lunch</span><span>Onion rings</span><span>Mild</span><span>Fried zucchini</span><span>Mozzarella sticks</span></div>
+        <div class="pics"><img src="img/reviews/selina1.jpg" alt="Wings and sides for Sunday football" loading="lazy"><img src="img/reviews/selina2.jpg" alt="Fried shrimp with cocktail sauce" loading="lazy"></div>
+      </article>
+
+      <article class="card" data-tags="wings lemon service photos" data-reveal>
+        <header><span class="avatar">S</span><div><b>Stephanie S</b><small>Local Guide · 711 reviews · 3,336 photos</small></div><div class="stars">★★★★★<small>2 years ago</small></div></header>
+        <p>Staff was friendly and helpful. The wings were delicious. Placed a very large order for a celebration of life gathering. Ordered buffalo, BBQ and lemon pepper. Everything was wonderful.</p>
+        <div class="tags"><span>Take out</span><span>Medium buffalo wings</span><span>Lemon pepper wings</span><span>Food 5</span><span>Service 4</span></div>
+        <div class="pics"><img src="img/reviews/steph1.jpg" alt="Large catering order of wings" loading="lazy"><img src="img/reviews/steph2.jpg" alt="Buffalo wings from a large order" loading="lazy"><img src="img/reviews/steph3.jpg" alt="BBQ and lemon pepper wings from a large order" loading="lazy"></div>
+      </article>
+
+      <article class="card wide" data-tags="wings lemon hot shrimp photos" data-reveal>
+        <header><span class="avatar">E</span><div><b>Enrique Zepeda-Reyes</b><small>Local Guide · 25 reviews · 7 photos</small></div><div class="stars">★★★★★<small>3 years ago</small></div></header>
+        <p>Before this place Buffalo Bell was my to go place. This is now my new wing spot above any other place in Tucson. The wings were fresh and crispy along with the shrimp! The blue cheese and ranch were perfect touches. But the wings were so flavorful we had the mango habanero which had good heat and the lemon pepper! All in all great experience. Definitely worth the trip to try this place out and they have more flavors!</p>
+        <div class="tags"><span>Mango habanero</span><span>Lemon pepper</span><span>Shrimp</span><span>Food 5</span><span>Service 5</span><span>Atmosphere 5</span><span>5 found this helpful</span></div>
+        <div class="pics"><img src="img/reviews/enrique1.jpg" alt="Mango habanero and lemon pepper wings" loading="lazy"><img src="img/reviews/enrique2.jpg" alt="Wings and fried shrimp" loading="lazy"></div>
+      </article>
+
+      <article class="card quote" data-tags="sides" data-reveal>
+        <p>Great portions, price, flavor, and I love their beans and rice!</p>
+        <div class="tags"><span>Google reviewer</span><span>Rice and beans</span></div>
+      </article>
+      <article class="card quote" data-tags="wings" data-reveal>
+        <p>Great prices for the quantity and quality of food.</p>
+        <div class="tags"><span>Google reviewer</span></div>
+      </article>
+      <article class="card quote" data-tags="wings lemon" data-reveal>
+        <p>The lemon pepper wings are great; delicious and crispy!</p>
+        <div class="tags"><span>Reviewer</span><span>Lemon pepper</span></div>
+      </article>
+      <article class="card quote" data-tags="wings" data-reveal>
+        <p>Some of the best wings I've had in a long time.</p>
+        <div class="tags"><span>Reviewer</span><span>Crispy wings</span></div>
+      </article>
+    </div>
+
+    <div class="write" data-reveal>
+      <p style="margin-bottom:1rem">Been in? Tell the next person what to order.</p>
+      <a class="btn primary" href="https://www.google.com/maps/place/Buffalo+Wings/@32.228798,-110.9898058,17z/data=!4m8!3m7!1s0x86d671b4886967cf:0x6e54e93cd997c906!8m2!3d32.228798!4d-110.9898058!9m1!1b1!16s%2Fg%2F11h4tck0rc" target="_blank" rel="noopener">Write a review on Google</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span class="yr"></span> Buffalo Wings · Tucson, AZ</span>
+    <nav><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="reviews.html">Reviews</a><a href="location.html">Location</a></nav>
+  </div>
+</footer>
+
+<div class="lb" id="lb" aria-hidden="true"><img alt=""></div>
+
+<script src="main.js"></script>
+<script>
+(() => {
+  const bars = document.getElementById('bars');
+  const bio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    bars.querySelectorAll('b[data-w]').forEach(b => b.style.width = b.dataset.w + '%');
+    bio.disconnect();
+  }), { threshold: 0.4 });
+  bio.observe(bars);
+
+  const btns = document.querySelectorAll('.filters button'), cards = document.querySelectorAll('.cards .card');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.toggle('active', x === b));
+    const f = b.dataset.f;
+    cards.forEach(c => c.classList.toggle('hide', f !== 'all' && !(c.dataset.tags || '').split(' ').includes(f)));
+  }));
+})();
+</script>
+</body>
+</html>

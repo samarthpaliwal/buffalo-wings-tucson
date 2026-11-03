@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buffalo Wings Tucson</title>
+<meta name="description" content="Buffalo Wings, 485 N Grande Ave, Tucson. Crispy wings tossed in house-made sauces, fried shrimp, chicken fingers, frappes and boba smoothies. Dine-in, drive-through and take-out.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* hero */
+.hero{min-height:100svh;display:grid;align-items:end;padding:120px 0 56px;position:relative;overflow:hidden}
+.hero .art{position:absolute;inset:0;z-index:0}
+.hero .art img{width:100%;height:100%;object-fit:cover;object-position:center 60%;opacity:.42;filter:saturate(1.1) contrast(1.05)}
+.hero .art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,14,.35) 0%,rgba(11,11,14,.55) 45%,var(--bg) 100%),linear-gradient(90deg,rgba(11,11,14,.7),transparent 60%)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:end}
+.hero h1{font-size:clamp(4rem,12vw,9.5rem);margin:.4rem 0 1.4rem}
+.hero p{max-width:34rem;font-size:1.05rem}
+.hero .actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}
+.rating-card{justify-self:end;background:rgba(19,19,23,.78);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:1.2rem 1.4rem;display:grid;gap:.35rem;min-width:220px;transition:border-color .3s}
+.rating-card:hover{border-color:var(--accent)}
+.rating-card .big{font-family:var(--display);font-size:4.2rem;line-height:.9;font-weight:700}
+.rating-card small{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.scroll-hint{position:absolute;left:var(--gutter);bottom:18px;font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;z-index:1}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.rating-card{justify-self:start}}
+
+/* intro */
+.intro .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.intro .col p{font-size:1.05rem}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem;border-top:1px solid var(--line);padding-top:1.4rem}
+.facts b{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);margin-bottom:.3rem;font-weight:500}
+.facts div{font-size:.92rem;color:var(--muted)}
+@media (max-width:860px){.intro .wrap{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}}
+
+/* favorites */
+.favs{background:var(--bg-2);border-block:1px solid var(--line)}
+.favgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.fav{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg);display:grid;grid-template-rows:auto 1fr}
+.fav img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.fav .t{padding:1.1rem 1.2rem 1.3rem}
+.fav .t h3{font-size:1.6rem;margin:.2rem 0 .3rem}
+.fav .t p{font-size:.88rem}
+.fav .t .pop{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+@media (max-width:860px){.favgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.favgrid{grid-template-columns:1fr}}
+
+/* quote strip */
+.quotes{overflow:hidden;border-bottom:1px solid var(--line);padding:1.3rem 0}
+.quotes .track{display:flex;gap:3rem;white-space:nowrap;animation:marquee 40s linear infinite;width:max-content}
+.quotes span{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;letter-spacing:.02em;color:var(--muted)}
+.quotes span b{color:var(--accent);font-weight:500}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.quotes .track{animation:none;white-space:normal;width:auto;flex-wrap:wrap}}
+</style>
+</head>
+<body id="top">
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Buffalo <span>Wings</span></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="location.html">Location</a></li>
+    </ul>
+    <a class="btn cta" href="tel:+15208822047">Call to order</a>
+    <button class="menu-btn" aria-label="Open navigation" aria-expanded="false"><i></i></button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="art"><img src="img/photo08.jpg" alt="Buffalo wings, fried shrimp and buffalo fries on a red tray" fetchpriority="high"></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Chicken wings restaurant · Menlo Plaza · Tucson, AZ</span>
+      <h1>Crispy<br>wings, <em>house</em><br>sauces</h1>
+      <p>A family-run wing counter on North Grande. Fried crisp, tossed to order in buffalo, BBQ, lemon pepper or mango habanero, and handed over hot with ranch or blue cheese and veggies.</p>
+      <div class="actions">
+        <a class="btn primary" href="menu.html">See the menu</a>
+        <a class="btn" href="location.html">Find us</a>
+      </div>
+    </div>
+    <a class="rating-card" href="reviews.html">
+      <span class="big">4.5</span>
+      <span class="stars" aria-label="4.5 out of 5 stars">★★★★★</span>
+      <small>416 Google reviews →</small>
+    </a>
+  </div>
+  <span class="scroll-hint">Scroll</span>
+</header>
+
+<div class="quotes" aria-hidden="true">
+  <div class="track">
+    <span>“Very crispy and the sauce is <b>bomb</b>”</span><span>“My new wing spot above any other place in <b>Tucson</b>”</span><span>“Great prices for the quantity and <b>quality</b>”</span><span>“The wings were pretty big and <b>so good</b>”</span><span>“I love their <b>beans and rice</b>”</span>
+    <span>“Very crispy and the sauce is <b>bomb</b>”</span><span>“My new wing spot above any other place in <b>Tucson</b>”</span><span>“Great prices for the quantity and <b>quality</b>”</span><span>“The wings were pretty big and <b>so good</b>”</span><span>“I love their <b>beans and rice</b>”</span>
+  </div>
+</div>
+
+<section class="intro" id="about">
+  <div class="wrap">
+    <h2 data-reveal>Wings that<br><em>hold up</em> under<br>the sauce</h2>
+    <div class="col">
+      <p data-reveal>Buffalo Wings is a small, locally owned shop in the Menlo Plaza Shopping Center on the west side of Tucson. The wings come out crispy enough to stay crispy under the sauce, the fries come in a family size, and there is a daily special on the board. Regulars say they stopped going to the chains after the first visit.</p>
+      <div class="facts" data-reveal>
+        <div><b>Located in</b>Menlo Plaza Shopping Center, 485 N Grande Ave</div>
+        <div><b>Price</b>$10–20 per person, reported by diners</div>
+        <div><b>Service</b>Dine-in · Drive-through · Take-out</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat" data-reveal><b>4<i>.</i>5</b><span>Google rating</span></div>
+    <div class="stat" data-reveal><b>416</b><span>Reviews</span></div>
+    <div class="stat" data-reveal><b>315</b><span>Five-star reviews</span></div>
+    <div class="stat" data-reveal><b>62</b><span>Photos from guests</span></div>
+  </div>
+</div>
+
+<section id="explore">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow" data-reveal>Explore</span><h2 data-reveal>Pick a<br>page</h2></div>
+    </div>
+    <div class="tiles">
+      <a class="tile" href="menu.html" data-reveal>
+        <img src="img/photo02.jpg" alt="Lemon pepper and BBQ wings with buffalo fries" loading="lazy">
+        <div class="t"><span class="eyebrow">Menu</span><h3>What's on the board</h3><p>Wings by the piece, eight sauces, fried appetizers, shrimp, frappes. Plus how to order.</p><span class="go">See the menu →</span></div>
+      </a>
+      <a class="tile" href="reviews.html" data-reveal>
+        <img src="img/photo06.jpg" alt="Tray of wings with sauce cups and veggies" loading="lazy">
+        <div class="t"><span class="eyebrow">Reviews</span><h3>What Tucson says</h3><p>4.5 stars from 416 Google reviews, with every guest photo in one spinning collage.</p><span class="go">Read reviews →</span></div>
+      </a>
+      <a class="tile" href="location.html" data-reveal>
+        <img src="img/photo01.jpg" alt="Buffalo Wings storefront in Menlo Plaza" loading="lazy">
+        <div class="t"><span class="eyebrow">Location</span><h3>Find us on N Grande</h3><p>Pinned on Google Maps, with hours, the drive-through lane and directions from I-10.</p><span class="go">Get directions →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="favs" id="favorites">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow" data-reveal>Crowd favorites</span><h2 data-reveal>Most<br>ordered</h2></div>
+      <a class="more" href="menu.html" data-reveal>Full menu</a>
+    </div>
+    <div class="favgrid zoomable">
+      <div class="fav" data-reveal><img src="img/reviews/enrique2.jpg" alt="Medium buffalo wings" loading="lazy"><div class="t"><span class="pop">Popular on Google</span><h3>Medium buffalo wings</h3><p>The house standard. Real buffalo bite, no burn, crispy underneath.</p></div></div>
+      <div class="fav" data-reveal><img src="img/photo04.jpg" alt="Lemon pepper wings" loading="lazy"><div class="t"><span class="pop">Popular on Google</span><h3>Lemon pepper wings</h3><p>Dry-rubbed, bright and salty. The most-photographed wing in the reviews.</p></div></div>
+      <div class="fav" data-reveal><img src="img/photo09.jpg" alt="Fried shrimp" loading="lazy"><div class="t"><span class="pop">Guest pick</span><h3>Fried shrimp</h3><p>Ten or thirty pieces, breaded, with cocktail sauce on the side.</p></div></div>
+      <div class="fav" data-reveal><img src="img/photo10.jpg" alt="Cookies and cream frappe" loading="lazy"><div class="t"><span class="pop">Guest pick</span><h3>Cookies and cream frappe</h3><p>16 oz, whipped cream on top. Boba smoothies on the same board.</p></div></div>
+      <div class="fav" data-reveal><img src="img/reviews/enrique1.jpg" alt="Mango habanero wings" loading="lazy"><div class="t"><span class="pop">Guest pick</span><h3>Mango habanero wings</h3><p>Sweet first, then the heat. Order it with fries and a horchata.</p></div></div>
+      <div class="fav" data-reveal><img src="img/photo07.jpg" alt="Wings and fries combo" loading="lazy"><div class="t"><span class="pop">Combo</span><h3>Wings with fries</h3><p>Six or ten wings, crinkle fries and a 24 oz drink in one box.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="order">
+  <div class="glow"></div>
+  <div class="wrap">
+    <h2 data-reveal>Call it in</h2>
+    <p data-reveal>Phone orders are ready when you pull up to the drive-through. Big orders for game day or a gathering are welcome, just give us a heads-up.</p>
+    <a class="phone" href="tel:+15208822047" data-reveal>(520) 882-2047</a>
+    <div class="actions" data-reveal>
+      <a class="btn primary" href="tel:+15208822047">Call now</a>
+      <a class="btn" href="menu.html#order">How to order</a>
+      <a class="btn" href="location.html">Directions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span class="yr"></span> Buffalo Wings · Tucson, AZ</span>
+    <nav><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="reviews.html">Reviews</a><a href="location.html">Location</a></nav>
+  </div>
+</footer>
+
+<div class="lb" id="lb" aria-hidden="true"><img alt=""></div>
+<script src="main.js"></script>
+</body>
+</html>

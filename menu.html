@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu · Buffalo Wings Tucson</title>
+<meta name="description" content="Full menu for Buffalo Wings on N Grande Ave in Tucson: wings by the piece, sauces, appetizers, sides, chicken fingers, fried shrimp, frappes and smoothies, plus how to order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* jump bar */
+.jump{position:sticky;top:70px;z-index:20;background:rgba(11,11,14,.85);backdrop-filter:blur(12px);border-block:1px solid var(--line)}
+.jump .wrap{display:flex;gap:.4rem;overflow-x:auto;padding:.7rem 0;scrollbar-width:none}
+.jump .wrap::-webkit-scrollbar{display:none}
+.jump a{flex:none;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem .9rem;border-radius:999px;border:1px solid var(--line);color:var(--muted);transition:all .25s var(--ease)}
+.jump a:hover{color:var(--fg);border-color:var(--accent)}
+
+/* menu sections */
+.msec{padding:80px 0;border-bottom:1px solid var(--line);scroll-margin-top:130px}
+#board,#order{scroll-margin-top:130px}
+.msec .grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+.msec .visual{position:sticky;top:140px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--bg-2)}
+.msec .visual img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.msec .visual figcaption{padding:.9rem 1.1rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.msec h2{font-size:clamp(2.2rem,5vw,3.6rem);margin:.4rem 0 1.4rem}
+.items{list-style:none}
+.items li{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid var(--line)}
+.items li strong{font-weight:500;font-size:1.02rem}
+.items li small{display:block;color:var(--muted);font-size:.85rem;margin-top:.15rem}
+.items li .price{font-family:var(--mono);font-size:.92rem;color:var(--accent);white-space:nowrap}
+.items li .price.soft{color:var(--muted)}
+.note{font-size:.9rem;margin:1.2rem 0;padding:.9rem 1.1rem;border-left:2px solid var(--accent);background:var(--bg-2);border-radius:0 10px 10px 0}
+.note a{color:var(--accent)}
+@media (max-width:860px){.msec .grid{grid-template-columns:1fr}.msec .visual{position:static}}
+
+/* sauces */
+.heat{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:1.4rem}
+.heat div{border:1px solid var(--line);border-radius:14px;padding:1rem;background:var(--bg-2)}
+.heat b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+.heat i{display:block;font-style:normal;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;margin:.3rem 0 .5rem}
+.heat .h1 i{color:#9bd36a}.heat .h2 i{color:#f5b301}.heat .h3 i{color:var(--accent)}.heat .h4 i{color:#ff5a6e}
+.heat p{font-size:.85rem}
+@media (max-width:760px){.heat{grid-template-columns:1fr 1fr}}
+
+/* board */
+.board{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg-2)}
+.board img{width:100%;max-height:560px;object-fit:cover;object-position:center 40%}
+.board figcaption{padding:1rem 1.2rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* how to order */
+.order{background:var(--bg-2);border-top:1px solid var(--line)}
+.ways{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:3rem}
+.way{border:1px solid var(--line);border-radius:18px;padding:1.6rem;background:var(--bg)}
+.way .n{font-family:var(--display);font-size:3rem;line-height:1;color:var(--accent);font-weight:700}
+.way h3{margin:.6rem 0 .5rem;font-size:1.7rem}
+.way p{font-size:.92rem}
+.way .btn{margin-top1rem;margin-top:1rem}
+@media (max-width:860px){.ways{grid-template-columns:1fr}}
+
+.builder{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:start}
+.builder fieldset{border:0;margin-bottom:1.6rem}
+.builder legend{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem}
+.opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.opts label{cursor:pointer}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts span{display:inline-block;padding:.55rem .95rem;border:1px solid var(--line);border-radius:999px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:all .2s var(--ease)}
+.opts input:checked + span{color:var(--fg);border-color:var(--accent);background:rgba(232,112,42,.14)}
+.opts input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.ticket{position:sticky;top:140px;border:1px dashed rgba(241,237,230,.3);border-radius:18px;padding:1.6rem;background:var(--bg);font-family:var(--mono)}
+.ticket h3{font-family:var(--display);font-size:2rem;margin-bottom:.4rem}
+.ticket .sub{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+.ticket ol{list-style:none;display:grid;gap:.5rem;font-size:.86rem;min-height:4rem}
+.ticket ol li{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--line);padding-bottom:.5rem}
+.ticket ol li span:last-child{color:var(--accent)}
+.ticket .empty{color:var(--muted);font-size:.86rem}
+.ticket .total{display:flex;justify-content:space-between;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.86rem}
+.ticket .total b{color:var(--fg)}
+.ticket .say{margin-top:1.2rem;padding:1rem;background:var(--bg-2);border-radius:12px;font-family:var(--body);font-size:.92rem;color:var(--fg);line-height:1.5}
+.ticket .say small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.ticket .actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+@media (max-width:860px){.builder{grid-template-columns:1fr}.ticket{position:static}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Buffalo <span>Wings</span></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="location.html">Location</a></li>
+    </ul>
+    <a class="btn cta" href="tel:+15208822047">Call to order</a>
+    <button class="menu-btn" aria-label="Open navigation" aria-expanded="false"><i></i></button>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="art"><img src="img/photo02.jpg" alt="Lemon pepper and BBQ wings with buffalo fries on a red tray"></div>
+  <div class="wrap">
+    <span class="eyebrow">Menu · Buffalo Wings, Tucson</span>
+    <h1>What's on<br>the <em>board</em></h1>
+    <p>Wings by the piece, fried to order and tossed in the sauce you pick. Fried shrimp, chicken fingers, a full line of fried appetizers, and frappes and boba smoothies to wash it down.</p>
+    <div class="actions">
+      <a class="btn primary" href="#order">How to order</a>
+      <a class="btn" href="tel:+15208822047">(520) 882-2047</a>
+    </div>
+  </div>
+</header>
+
+<div class="jump">
+  <div class="wrap">
+    <a href="#wings">Wings</a><a href="#sauces">Sauces</a><a href="#combos">Combos</a><a href="#apps">Appetizers</a><a href="#sides">Sides &amp; salad</a><a href="#fingers">Fingers &amp; shrimp</a><a href="#drinks">Drinks</a><a href="#board">The board</a><a href="#order">How to order</a>
+  </div>
+</div>
+
+<section class="msec" id="wings">
+  <div class="wrap grid">
+    <figure class="visual zoomable" data-reveal><img src="img/photo06.jpg" alt="Tray of crispy wings with cups of buffalo sauce, ranch, carrots and celery" loading="lazy"><figcaption>Every order comes with ranch or blue cheese and veggies</figcaption></figure>
+    <div>
+      <span class="eyebrow" data-reveal>Wings</span>
+      <h2 data-reveal>By the piece</h2>
+      <p data-reveal>Pick a count, pick a sauce, pick your dressing. Mixing sauces across a big order is fine, just say so when you order.</p>
+      <div class="note" data-reveal>Wing prices move with the market, so the board at the counter is the final word. Call <a href="tel:+15208822047">(520) 882-2047</a> for today's price.</div>
+      <ul class="items" data-reveal>
+        <li><strong>6 piece wings<small>Enough for one, with dressing and veggies</small></strong><span class="price soft">Ask</span></li>
+        <li><strong>10 piece wings</strong><span class="price soft">Ask</span></li>
+        <li><strong>20 piece wings<small>Two sauces welcome</small></strong><span class="price soft">Ask</span></li>
+        <li><strong>30 piece wings</strong><span class="price soft">Ask</span></li>
+        <li><strong>40 · 50 · 60 · 70 piece wings<small>Game day, parties and gatherings. Call ahead for the big ones.</small></strong><span class="price soft">Ask</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="msec" id="sauces">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Sauces</span>
+    <h2 data-reveal>Pick your <em>heat</em></h2>
+    <p data-reveal>House-made sauces, tossed to order. Reviewers' favorites are lemon pepper and mango habanero.</p>
+    <div class="heat" data-reveal>
+      <div class="h1"><b>Mild buffalo</b><i>● ○ ○ ○</i><p>Classic buffalo flavor with the heat turned down. Kid-friendly.</p></div>
+      <div class="h2"><b>Medium buffalo</b><i>● ● ○ ○</i><p>The one most people order. A real buffalo bite without the burn.</p></div>
+      <div class="h3"><b>Hot buffalo</b><i>● ● ● ○</i><p>For people who ask for extra sauce on the side and mean it.</p></div>
+      <div class="h4"><b>Mango habanero</b><i>● ● ● ●</i><p>Sweet first, then the habanero shows up. The sleeper hit.</p></div>
+      <div class="h1"><b>BBQ</b><i>● ○ ○ ○</i><p>Thick and glossy. Pairs with lemon pepper on a split order.</p></div>
+      <div class="h1"><b>Lemon pepper</b><i>Dry rub</i><p>Crispy, salty, bright. The most-photographed wing on Google.</p></div>
+      <div class="h2"><b>Lemon pepper buffalo</b><i>● ● ○ ○</i><p>Lemon pepper rub with buffalo sauce over the top.</p></div>
+      <div class="h2"><b>Buffalo BBQ</b><i>● ● ○ ○</i><p>Half buffalo, half BBQ, all in one toss.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="msec" id="combos">
+  <div class="wrap grid">
+    <figure class="visual zoomable" data-reveal><img src="img/photo07.jpg" alt="Wings and crinkle-cut fries in a take-out box with ranch" loading="lazy"><figcaption>Wings with fries combo</figcaption></figure>
+    <div>
+      <span class="eyebrow" data-reveal>Combos</span>
+      <h2 data-reveal>Meal deals</h2>
+      <p data-reveal>Every combo comes with a 24 oz fountain drink.</p>
+      <ul class="items" data-reveal>
+        <li><strong>1 · Six piece wings combo<small>6 wings with rice, beans or toast and a 24 oz soda</small></strong><span class="price soft">Ask</span></li>
+        <li><strong>2 · Six piece wings with fries<small>6 wings, fries and a 24 oz soda</small></strong><span class="price soft">Ask</span></li>
+        <li><strong>3 · Ten piece wings combo<small>10 wings with rice, beans or toast and a 24 oz soda</small></strong><span class="price soft">Ask</span></li>
+        <li><strong>4 · Ten piece wings with fries<small>10 wings, fries and a 24 oz soda</small></strong><span class="price soft">Ask</span></li>
+        <li><strong>5 · Chicken fingers combo<small>Chicken fingers with rice, beans or toast and a 24 oz soda</small></strong><span class="price soft">Ask</span></li>
+        <li><strong>6 · Chicken fingers with fries<small>Chicken fingers, fries and a 24 oz soda</small></strong><span class="price soft">Ask</span></li>
+        <li><strong>7 · Sandwich with fries<small>Ham and cheese, turkey or club, with fries and a 24 oz soda</small></strong><span class="price soft">Ask</span></li>
+        <li><strong>Kids combo<small>3 chicken fingers, fries and a small soda</small></strong><span class="price soft">Ask</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="msec" id="apps">
+  <div class="wrap grid">
+    <figure class="visual zoomable" data-reveal><img src="img/photo02.jpg" alt="Buffalo fries beside lemon pepper and BBQ wings" loading="lazy"><figcaption>Buffalo fries: spicy seasoned potato chips, family size available</figcaption></figure>
+    <div>
+      <span class="eyebrow" data-reveal>Appetizers</span>
+      <h2 data-reveal>From the fryer</h2>
+      <ul class="items" data-reveal>
+        <li><strong>Potato skins</strong><span class="price">$6.99</span></li>
+        <li><strong>Onion rings</strong><span class="price">$6.99</span></li>
+        <li><strong>Fried zucchini</strong><span class="price">$6.99</span></li>
+        <li><strong>Fried mushrooms</strong><span class="price">$6.99</span></li>
+        <li><strong>Jalapeño poppers</strong><span class="price">$6.99</span></li>
+        <li><strong>Fried mozzarella sticks</strong><span class="price">$6.99</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="msec" id="sides">
+  <div class="wrap grid">
+    <figure class="visual zoomable" data-reveal><img src="img/reviews/jr1.jpg" alt="Wings with sides from a dine-in lunch" loading="lazy"><figcaption>Rice, beans and toast round out a combo</figcaption></figure>
+    <div>
+      <span class="eyebrow" data-reveal>Sides &amp; salad</span>
+      <h2 data-reveal>On the side</h2>
+      <ul class="items" data-reveal>
+        <li><strong>French fries<small>Family size $3.99</small></strong><span class="price">$2.99</span></li>
+        <li><strong>Buffalo fries<small>Spicy seasoned · family size $4.99</small></strong><span class="price">$3.99</span></li>
+        <li><strong>Rice</strong><span class="price">$2.00</span></li>
+        <li><strong>Beans</strong><span class="price">$2.00</span></li>
+        <li><strong>Rice and beans</strong><span class="price">$2.00</span></li>
+        <li><strong>Potato salad<small>Half pound</small></strong><span class="price">$2.00</span></li>
+        <li><strong>White or garlic toast</strong><span class="price">$1.00</span></li>
+        <li><strong>Side of veggies with ranch<small>Small $4.99 · large $6.99</small></strong><span class="price">$4.99</span></li>
+        <li><strong>Side salad<small>Lettuce, tomato, onion, croutons and cheddar</small></strong><span class="price">$3.99</span></li>
+        <li><strong>Dinner salad<small>Add chicken $2.00</small></strong><span class="price">$5.99</span></li>
+        <li><strong>Extra ranch or blue cheese</strong><span class="price">$0.75</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="msec" id="fingers">
+  <div class="wrap grid">
+    <figure class="visual zoomable" data-reveal><img src="img/photo09.jpg" alt="Fried shrimp over lettuce with cocktail sauce" loading="lazy"><figcaption>Ten piece fried shrimp with cocktail sauce</figcaption></figure>
+    <div>
+      <span class="eyebrow" data-reveal>Chicken fingers &amp; shrimp</span>
+      <h2 data-reveal>Not wings</h2>
+      <ul class="items" data-reveal>
+        <li><strong>Chicken fingers, 5 piece<small>Hand-breaded, with your choice of dipping sauce</small></strong><span class="price">$8.99</span></li>
+        <li><strong>Chicken fingers, 15 piece</strong><span class="price">$23.99</span></li>
+        <li><strong>Fried shrimp, 10 piece<small>Breaded, with cocktail sauce</small></strong><span class="price">$8.99</span></li>
+        <li><strong>Fried shrimp, 30 piece</strong><span class="price">$23.99</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="msec" id="drinks">
+  <div class="wrap grid">
+    <figure class="visual zoomable" data-reveal><img src="img/photo05.jpg" alt="Mango and mocha frappes with whipped cream" loading="lazy"><figcaption>Frappes and smoothies, boba optional</figcaption></figure>
+    <div>
+      <span class="eyebrow" data-reveal>Drinks</span>
+      <h2 data-reveal>Cold ones</h2>
+      <ul class="items" data-reveal>
+        <li><strong>Frappe, 16 oz<small>Mocha, cookies and cream, or caramel</small></strong><span class="price">$4.99</span></li>
+        <li><strong>Smoothie, 20 oz<small>Strawberry, mango, honeydew, taro, coconut and more · add boba $0.75</small></strong><span class="price">$4.99</span></li>
+        <li><strong>Horchata<small>24 oz $2.99 · 32 oz $3.59</small></strong><span class="price">$2.99</span></li>
+        <li><strong>Fountain soda<small>24 oz $2.79 · 32 oz $3.19</small></strong><span class="price">$2.79</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="board">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow" data-reveal>The board</span><h2 data-reveal>Straight from<br>the counter</h2></div>
+    </div>
+    <figure class="board zoomable" data-reveal>
+      <img src="img/photo03.jpg" alt="The menu board above the counter at Buffalo Wings" loading="lazy">
+      <figcaption>Photographed by a guest in 2025. Prices on this page come from it. Tap to zoom.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="order" id="order">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="eyebrow" data-reveal>How to order</span><h2 data-reveal>Three ways<br>to get wings</h2></div>
+      <span class="eyebrow" data-reveal style="color:var(--muted)">No app delivery. Order direct.</span>
+    </div>
+    <div class="ways">
+      <div class="way" data-reveal>
+        <span class="n">01</span>
+        <h3>Call it in</h3>
+        <p>Phone the shop, say your count, sauce and dressing, and give a name. Big orders for game day or a gathering are welcome with a heads-up.</p>
+        <a class="btn primary" href="tel:+15208822047">(520) 882-2047</a>
+      </div>
+      <div class="way" data-reveal>
+        <span class="n">02</span>
+        <h3>Drive-through</h3>
+        <p>Pull into Menlo Plaza off N Grande Ave and follow the lane around the building. Order at the speaker or pick up what you called in.</p>
+        <a class="btn" href="location.html">Find the lane</a>
+      </div>
+      <div class="way" data-reveal>
+        <span class="n">03</span>
+        <h3>Walk in</h3>
+        <p>Order at the counter, grab a table or take it to go. Tue to Sat 10:30 AM to 8 PM, Sun 11 AM to 7 PM. Closed Mondays.</p>
+        <a class="btn" href="location.html#hours">See hours</a>
+      </div>
+    </div>
+
+    <div class="head" style="margin-top:4rem">
+      <div><span class="eyebrow" data-reveal>Order builder</span><h2 data-reveal>Build it,<br>then call</h2></div>
+      <p data-reveal style="max-width:30rem">Pick what you want and we'll write out what to say on the phone. Wing and combo prices get confirmed when you call.</p>
+    </div>
+
+    <form class="builder" id="builder" data-reveal onsubmit="return false">
+      <div>
+        <fieldset>
+          <legend>Wings</legend>
+          <div class="opts" data-group="wings">
+            <label><input type="radio" name="wings" value="0" checked><span>None</span></label>
+            <label><input type="radio" name="wings" value="6"><span>6 pc</span></label>
+            <label><input type="radio" name="wings" value="10"><span>10 pc</span></label>
+            <label><input type="radio" name="wings" value="20"><span>20 pc</span></label>
+            <label><input type="radio" name="wings" value="30"><span>30 pc</span></label>
+            <label><input type="radio" name="wings" value="50"><span>50 pc</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Sauce (pick up to two)</legend>
+          <div class="opts" data-group="sauce">
+            <label><input type="checkbox" name="sauce" value="mild buffalo"><span>Mild</span></label>
+            <label><input type="checkbox" name="sauce" value="medium buffalo"><span>Medium</span></label>
+            <label><input type="checkbox" name="sauce" value="hot buffalo"><span>Hot</span></label>
+            <label><input type="checkbox" name="sauce" value="BBQ"><span>BBQ</span></label>
+            <label><input type="checkbox" name="sauce" value="lemon pepper"><span>Lemon pepper</span></label>
+            <label><input type="checkbox" name="sauce" value="mango habanero"><span>Mango habanero</span></label>
+            <label><input type="checkbox" name="sauce" value="lemon pepper buffalo"><span>Lemon pepper buffalo</span></label>
+            <label><input type="checkbox" name="sauce" value="buffalo BBQ"><span>Buffalo BBQ</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Dressing</legend>
+          <div class="opts">
+            <label><input type="radio" name="dress" value="ranch" checked><span>Ranch</span></label>
+            <label><input type="radio" name="dress" value="blue cheese"><span>Blue cheese</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>More from the fryer</legend>
+          <div class="opts" data-group="extras">
+            <label><input type="checkbox" name="extra" value="5 pc chicken fingers" data-price="8.99"><span>5 pc chicken fingers</span></label>
+            <label><input type="checkbox" name="extra" value="10 pc fried shrimp" data-price="8.99"><span>10 pc fried shrimp</span></label>
+            <label><input type="checkbox" name="extra" value="mozzarella sticks" data-price="6.99"><span>Mozzarella sticks</span></label>
+            <label><input type="checkbox" name="extra" value="jalapeño poppers" data-price="6.99"><span>Jalapeño poppers</span></label>
+            <label><input type="checkbox" name="extra" value="onion rings" data-price="6.99"><span>Onion rings</span></label>
+            <label><input type="checkbox" name="extra" value="fried zucchini" data-price="6.99"><span>Fried zucchini</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Sides</legend>
+          <div class="opts" data-group="sides">
+            <label><input type="checkbox" name="extra" value="french fries" data-price="2.99"><span>Fries</span></label>
+            <label><input type="checkbox" name="extra" value="family fries" data-price="3.99"><span>Family fries</span></label>
+            <label><input type="checkbox" name="extra" value="buffalo fries" data-price="3.99"><span>Buffalo fries</span></label>
+            <label><input type="checkbox" name="extra" value="rice and beans" data-price="2.00"><span>Rice &amp; beans</span></label>
+            <label><input type="checkbox" name="extra" value="potato salad" data-price="2.00"><span>Potato salad</span></label>
+            <label><input type="checkbox" name="extra" value="garlic toast" data-price="1.00"><span>Garlic toast</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Drinks</legend>
+          <div class="opts" data-group="drinks">
+            <label><input type="checkbox" name="extra" value="24 oz soda" data-price="2.79"><span>Soda</span></label>
+            <label><input type="checkbox" name="extra" value="24 oz horchata" data-price="2.99"><span>Horchata</span></label>
+            <label><input type="checkbox" name="extra" value="mango smoothie" data-price="4.99"><span>Mango smoothie</span></label>
+            <label><input type="checkbox" name="extra" value="taro smoothie with boba" data-price="5.74"><span>Taro boba</span></label>
+            <label><input type="checkbox" name="extra" value="cookies and cream frappe" data-price="4.99"><span>Cookies &amp; cream frappe</span></label>
+            <label><input type="checkbox" name="extra" value="mocha frappe" data-price="4.99"><span>Mocha frappe</span></label>
+          </div>
+        </fieldset>
+      </div>
+
+      <aside class="ticket" aria-live="polite">
+        <h3>Your order</h3>
+        <div class="sub">Buffalo Wings · 485 N Grande Ave</div>
+        <ol id="ticketList"><li class="empty">Nothing picked yet.</li></ol>
+        <div class="total"><span>Priced items</span><b id="ticketTotal">$0.00</b></div>
+        <div class="say"><small>What to say on the phone</small><span id="ticketSay">Hi, I'd like to place an order for pickup.</span></div>
+        <div class="actions">
+          <a class="btn primary" href="tel:+15208822047">Call now</a>
+          <button class="btn" type="button" id="copyOrder">Copy order</button>
+          <button class="btn" type="button" id="resetOrder">Clear</button>
+        </div>
+      </aside>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span class="yr"></span> Buffalo Wings · Tucson, AZ</span>
+    <nav><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="reviews.html">Reviews</a><a href="location.html">Location</a></nav>
+  </div>
+</footer>
+
+<div class="lb" id="lb" aria-hidden="true"><img alt=""></div>
+
+<script src="main.js"></script>
+<script>
+(() => {
+  const form = document.getElementById('builder');
+  const list = document.getElementById('ticketList'), total = document.getElementById('ticketTotal'), say = document.getElementById('ticketSay');
+  const sauceBoxes = [...form.querySelectorAll('input[name="sauce"]')];
+
+  sauceBoxes.forEach(b => b.addEventListener('change', () => {
+    const on = sauceBoxes.filter(x => x.checked);
+    if (on.length > 2) { b.checked = false; }
+  }));
+
+  function render() {
+    const wings = +form.wings.value;
+    const sauces = sauceBoxes.filter(x => x.checked).map(x => x.value);
+    const dress = form.dress.value;
+    const extras = [...form.querySelectorAll('input[name="extra"]:checked')];
+    const lines = []; let sum = 0;
+    if (wings) {
+      const s = sauces.length ? ' · ' + sauces.join(' + ') : '';
+      lines.push([wings + ' pc wings' + s + ' · ' + dress, 'ask']);
+    }
+    extras.forEach(x => { lines.push([x.value, '$' + (+x.dataset.price).toFixed(2)]); sum += +x.dataset.price; });
+
+    list.innerHTML = lines.length ? lines.map(l => '<li><span>' + l[0] + '</span><span>' + l[1] + '</span></li>').join('') : '<li class="empty">Nothing picked yet.</li>';
+    total.textContent = '$' + sum.toFixed(2) + (wings ? ' + wings' : '');
+
+    const parts = [];
+    if (wings) parts.push(wings + ' piece wings' + (sauces.length ? ' in ' + sauces.join(' and ') : '') + ' with ' + dress);
+    extras.forEach(x => parts.push(x.value));
+    const spoken = parts.length ? parts.slice(0, -1).join(', ') + (parts.length > 1 ? ', and ' : '') + parts[parts.length - 1] : '';
+    say.textContent = spoken ? "Hi, I'd like to place an order for pickup: " + spoken + '. What will the total be?' : "Hi, I'd like to place an order for pickup.";
+  }
+  form.addEventListener('change', render); render();
+
+  document.getElementById('copyOrder').addEventListener('click', async e => {
+    try { await navigator.clipboard.writeText(say.textContent); e.target.textContent = 'Copied'; setTimeout(() => e.target.textContent = 'Copy order', 1500); }
+    catch { e.target.textContent = 'Select & copy'; }
+  });
+  document.getElementById('resetOrder').addEventListener('click', () => { form.reset(); render(); });
+})();
+</script>
+</body>
+</html>
