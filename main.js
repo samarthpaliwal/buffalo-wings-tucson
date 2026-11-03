@@ -54,5 +54,24 @@
     badge.classList.add(open ? 'is-open' : 'is-closed');
   }
 
+  // count-up numbers
+  const counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const run = el => {
+      const end = +el.dataset.count, dec = +(el.dataset.dec || 0), t0 = performance.now(), dur = 1400;
+      const tick = now => {
+        const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = (end * e).toFixed(dec);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      reduce ? el.textContent = end.toFixed(dec) : requestAnimationFrame(tick);
+    };
+    const cio = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { run(e.target); cio.unobserve(e.target); }
+    }), { threshold: 0.5 });
+    counters.forEach(c => cio.observe(c));
+  }
+
   document.querySelectorAll('.yr').forEach(el => el.textContent = new Date().getFullYear());
 })();
